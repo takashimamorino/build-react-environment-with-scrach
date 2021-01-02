@@ -1,2 +1,2 @@
 ## What is this
-webpack5 + Babel + TypeScript + React
+webpack5 + TypeScript + React

@@ -1,8 +1,8 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -13,15 +13,15 @@ module.exports = {
       test: /\.tsx?$/,
       exclude: /node_modules/,
       use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env']
-        }
+        loader: 'ts-loader'
       }
     }]
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
+    extensions: ['.js', '.json', '.ts', '.tsx'],
+    plugins: [new TsconfigPathsPlugin({
+      configFile: 'tsconfig.json'
+    })]
   },
   plugins: [
     new HtmlWebpackPlugin({
